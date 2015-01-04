@@ -44,7 +44,7 @@ gem 'spring',        group: :development
   # stuff that heroku likes to have
   gem 'thin'
   gem "SystemTimer", :require => "system_timer", :platforms => :ruby_18
-  gem "rack-timeout"
+#  gem "rack-timeout"
   gem 'rails_12factor'
 
   gem 'web-app-theme', :git => 'git://github.com/dsaronin/web-app-theme.git'
