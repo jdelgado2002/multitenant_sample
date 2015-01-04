@@ -60,3 +60,4 @@ gem 'spring',        group: :development
   # gem 'recaptcha', :require => "recaptcha/rails"
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+gem 'mandrill-api', '~> 1.0.53'
