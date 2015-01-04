@@ -3,8 +3,6 @@ Rails.application.configure do
   # devise says to define default url
   config.action_mailer.default_url_options = { :host => 'secure.simple-milia-app.com', :protocol => 'https' }
 
-  ActionMailer::Base.delivery_method = :smtp
-
 #  ActionMailer::Base.smtp_settings = {
 #    :address        => 'smtp.sendgrid.net',
 #    :port           => '587',
@@ -14,15 +12,15 @@ Rails.application.configure do
 #    :domain         => 'heroku.com'
 #  }
   
-  config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
-    :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => "MANDRILL_USERNAME",
-    :password  => "MANDRILL_PASSWORD", # SMTP password is any valid API key
-    :authentication => 'login', # Mandrill supports 'plain' or 'login'
-    :domain => 'simlesapp.com', # your domain to identify your server when connecting
-  }
+ActionMailer::Base.smtp_settings = {
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['MANDRILL_USERNAME'],
+    :password =>       ENV['MANDRILL_APIKEY'],
+    :domain =>         'heroku.com',
+    :authentication => :plain
+}
+ActionMailer::Base.delivery_method = :smtp
 
   # Settings specified here will take precedence over those in config/application.rb.
 
