@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103050345) do
+ActiveRecord::Schema.define(version: 20150116233407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "Members_SalesGroups", id: false, force: :cascade do |t|
+    t.integer "sales_group_id", null: false
+    t.integer "member_id",      null: false
+  end
+
+  create_table "industries", force: :cascade do |t|
+    t.integer  "tenant_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "industries", ["tenant_id"], name: "index_industries_on_tenant_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.integer  "tenant_id"
@@ -27,6 +42,16 @@ ActiveRecord::Schema.define(version: 20150103050345) do
 
   add_index "members", ["tenant_id"], name: "index_members_on_tenant_id", using: :btree
   add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
+
+  create_table "sales_groups", force: :cascade do |t|
+    t.integer  "tenant_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "sales_groups", ["tenant_id"], name: "index_sales_groups_on_tenant_id", using: :btree
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false
@@ -80,7 +105,9 @@ ActiveRecord::Schema.define(version: 20150103050345) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "industries", "tenants"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
+  add_foreign_key "sales_groups", "tenants"
   add_foreign_key "tenants", "tenants"
 end

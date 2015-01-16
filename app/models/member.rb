@@ -1,6 +1,7 @@
 class Member < ActiveRecord::Base
    
   belongs_to :user
+  has_and_belongs_to_many :sales_groups
   acts_as_tenant
 
   DEFAULT_ADMIN = {

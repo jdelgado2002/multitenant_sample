@@ -1,0 +1,19 @@
+%h1 Listing sales_groups
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @sales_groups.each do |sales_group|
+      %tr
+        %td= link_to 'Show', sales_group
+        %td= link_to 'Edit', edit_sales_group_path(sales_group)
+        %td= link_to 'Destroy', sales_group, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Sales group', new_sales_group_path

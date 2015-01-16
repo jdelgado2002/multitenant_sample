@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :industries
+
+  resources :sales_groups
+
   get "home/welcome", :as => :welcome
   resources :members
 
